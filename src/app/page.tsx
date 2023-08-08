@@ -10,13 +10,11 @@ import { TReport } from "@/libs/report.type";
 import listReportData from '@/data/list_of_report.json'
 import { useGetProductReportsQuery } from "@/redux/features/product.api";
 const listReport : TReport[] = listReportData.lists
-
+import backupData from '@/data/chartData.json'
 
 export default function Home() {
 
-  const {data : chartData, isFetching, isError, isSuccess } = useGetProductReportsQuery({})
-
-  console.log(chartData, isFetching, isError, isSuccess, "fetchData");
+  const {data : data } = useGetProductReportsQuery({})
   
 
   const [productSold, setProductSold] = React.useState<TReport>(listReport[0])
@@ -29,6 +27,17 @@ export default function Home() {
   const hanldeChangeTopSelling = (val: any) => {    
     setTopSelling(val)
   }
+
+  const chartData = React.useMemo(() => {
+    if (data && data.length > 0) {
+      return data
+    }else{
+      return backupData.data
+    }
+  }, [data])
+
+  
+  
 
 
   return (
