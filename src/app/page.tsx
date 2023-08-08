@@ -7,63 +7,17 @@ import { USDcurrency } from "@/utils/helpers";
 import React from "react";
 import topSellingData from '@/data/selling_product_data.json'
 import { TReport } from "@/libs/report.type";
+import listReportData from '@/data/list_of_report.json'
+import { useGetProductReportsQuery } from "@/redux/features/product.api";
+const listReport : TReport[] = listReportData.lists
 
-const listReport : TReport[] = [
-  {
-    name: "this week",
-    id: "this_week",
-  },
-  {
-    name: "this month",
-    id: "this_month",
-  },
-  {
-    name: "today",
-    id: "today",
-  },
-];
-
-
-
-const chartData = [
-  {
-    created_at: "20 Jul 2023",
-    total: 25,
-    income: "80",
-  },
-  {
-    created_at: "21 Jul 2023",
-    total: 30,
-    income: "120",
-  },
-  {
-    created_at: "22 Jul 2023",
-    total: 49,
-    income: "20",
-  },
-  {
-    created_at: "23 Jul 2023",
-    total: 48,
-    income: "420",
-  },
-  {
-    created_at: "24 Jul 2023",
-    total: 30,
-    income: "30",
-  },
-  {
-    created_at: "25 Jul 2023",
-    total: 31,
-    income: "40",
-  },
-  {
-    created_at: "26 Jul 2023",
-    total: 15,
-    income: "230",
-  },
-];
 
 export default function Home() {
+
+  const {data : chartData, isFetching, isError, isSuccess } = useGetProductReportsQuery({})
+
+  console.log(chartData, isFetching, isError, isSuccess, "fetchData");
+  
 
   const [productSold, setProductSold] = React.useState<TReport>(listReport[0])
   const [topSelling, setTopSelling] = React.useState<TReport>(listReport[0])
@@ -91,7 +45,10 @@ export default function Home() {
             </p>
             <SelectBox value={productSold} onChange={handleChangeProduct} lists={listReport} />
           </div>
-          <BarChart data={chartData} />
+          {
+            chartData &&  <BarChart data={chartData} />
+          }
+         
         </section>
         <section className="rounded-[15px] w-full bg-white md:w-fit md:min-w-[380px]">
           <div className=" flex justify-between items-center pb-10 px-6 py-5">

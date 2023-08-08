@@ -4,8 +4,12 @@ import { Roboto } from "next/font/google";
 import { twMerge } from "tailwind-merge";
 import Aside from "@/components/aside/Aside";
 import Header from "@/components/header/Header";
+import { Providers } from "@/redux/provider";
 
-const roboto = Roboto({ weight : ["100","300","400","500","700","900"], subsets: ["latin"] });
+const roboto = Roboto({
+  weight: ["100", "300", "400", "500", "700", "900"],
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,9 +29,11 @@ export default function RootLayout({
           "bg-body flex flex-col md:flex-row"
         )}
       >
-        <Aside/>
-        <Header/>
-        {children}
+        <Providers>
+          <Aside />
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );

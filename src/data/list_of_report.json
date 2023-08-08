@@ -1,0 +1,16 @@
+{
+  "lists": [
+    {
+      "name": "this week",
+      "id": "this_week"
+    },
+    {
+      "name": "this month",
+      "id": "this_month"
+    },
+    {
+      "name": "today",
+      "id": "today"
+    }
+  ]
+}
