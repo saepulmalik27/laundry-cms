@@ -7,17 +7,19 @@ type TListboxProps = {
      lists : {
         name : string,
         id : string
-    }[]
+    }[],
+    value : any,
+    onChange : (e :any) => void
 } 
 
-const SelectBox : React.FC<TListboxProps> = ({lists}) => {
-    const [selected, setSelected] = React.useState(lists[0])
+const SelectBox : React.FC<TListboxProps> = ({lists, value, onChange}) => {
+    // const [selected, setSelected] = React.useState(lists[0])
   return (
     <div className="relative w-fit">
-    <Listbox value={selected} onChange={setSelected}>
+    <Listbox value={value} onChange={onChange}>
       <div className="relative mt-1">
         <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white py-2 pl-3 pr-10 text-left border border-secondary-50 focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
-          <span className="capitalize block truncate text-[14px]">{selected.name}</span>
+          <span className="capitalize block truncate text-[14px]">{value.name}</span>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
             <SVG
                 src='/icons/chevron_down.svg'

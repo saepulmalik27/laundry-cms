@@ -2,52 +2,11 @@
 import React from "react";
 import Logo from "../logo/Logo";
 import SVG from 'react-inlinesvg'
-import {
-    useRouter,
-    usePathname
-} from 'next/navigation'
 import { twMerge } from "tailwind-merge";
-type TListMenu = {
-  label: string;
-  url: string;
-  icon: string;
-};
-
-const listMenu: TListMenu[] = [
-  {
-    label: "Home",
-    url: "/",
-    icon: "/icons/home_outline.svg",
-  },
-  {
-    label: "Products",
-    url: "/products",
-    icon: "/icons/folder_open.svg",
-  },
-  {
-    label: "Sales",
-    url: "/sales",
-    icon: "/icons/line_chart_up.svg",
-  },
-  {
-    label: "Settings",
-    url: "/settings",
-    icon: "/icons/settings.svg",
-  },
-];
+import useMenu from "@/hooks/useMenu";
 
 const Aside = () => {
-
-    const {push} = useRouter()
-    const pathname = usePathname()
-    const handleClickMenu = (target : string) => {
-      console.log("aside");
-      
-        push(target)
-    }
-    console.log(pathname);
-    
-
+  const  { listMenu, handleClickMenu, pathname} = useMenu()
   return (
     <aside className="hidden md:flex bg-lightblue-500  flex-col gap-20 text-white p-10">
       <Logo />

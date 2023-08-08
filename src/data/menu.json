@@ -1,0 +1,24 @@
+{
+  "menu": [
+    {
+      "label": "Home",
+      "url": "/",
+      "icon": "/icons/home_outline.svg"
+    },
+    {
+      "label": "Products",
+      "url": "/products",
+      "icon": "/icons/folder_open.svg"
+    },
+    {
+      "label": "Sales",
+      "url": "/sales",
+      "icon": "/icons/line_chart_up.svg"
+    },
+    {
+      "label": "Settings",
+      "url": "/settings",
+      "icon": "/icons/settings.svg"
+    }
+  ]
+}

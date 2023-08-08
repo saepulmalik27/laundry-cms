@@ -1,0 +1,36 @@
+{
+  "this_week": [
+    {
+      "name": "Item A",
+      "spent": 180
+    },
+    {
+      "name": "Item B",
+      "spent": 80
+    },
+    {
+      "name": "Item C",
+      "spent": 76
+    }
+  ],
+  "this_month": [
+    {
+      "name": "Item A",
+      "spent": 2000
+    },
+    {
+      "name": "Item B",
+      "spent": 1500
+    },
+    {
+      "name": "Item C",
+      "spent": 1000
+    }
+  ],
+  "today": [
+    {
+      "name": "item c",
+      "spent": 8
+    }
+  ]
+}

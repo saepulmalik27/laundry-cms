@@ -4,9 +4,11 @@ import Avatar from "@/components/avatar/Avatar";
 import BarChart from "@/components/chart/Chart";
 import SelectBox from "@/components/selectbox/SelectBox";
 import { USDcurrency } from "@/utils/helpers";
-import SVG from "react-inlinesvg";
+import React from "react";
+import topSellingData from '@/data/selling_product_data.json'
+import { TReport } from "@/libs/report.type";
 
-const listReport = [
+const listReport : TReport[] = [
   {
     name: "this week",
     id: "this_week",
@@ -21,16 +23,7 @@ const listReport = [
   },
 ];
 
-const topSellingData = [{
-  name : "Item A",
-  spent : 180
-},{
-  name : "Item B",
-  spent : 80
-},{
-  name : "Item C",
-  spent : 76
-}]
+
 
 const chartData = [
   {
@@ -71,6 +64,19 @@ const chartData = [
 ];
 
 export default function Home() {
+
+  const [productSold, setProductSold] = React.useState<TReport>(listReport[0])
+  const [topSelling, setTopSelling] = React.useState<TReport>(listReport[0])
+
+  const handleChangeProduct = (val:any) => {
+    setProductSold(val)
+  }
+
+  const hanldeChangeTopSelling = (val: any) => {    
+    setTopSelling(val)
+  }
+
+
   return (
     <main className="flex-1">
       <div className="hidden md:flex justify-between p-6 items-center bg-white">
@@ -83,7 +89,7 @@ export default function Home() {
             <p className="text-[14px] md:text-[17px] font-semibold">
               Product Sold
             </p>
-            <SelectBox lists={listReport} />
+            <SelectBox value={productSold} onChange={handleChangeProduct} lists={listReport} />
           </div>
           <BarChart data={chartData} />
         </section>
@@ -92,7 +98,7 @@ export default function Home() {
             <p className="text-[14px] md:text-[17px]  font-semibold">
               Top selling product
             </p>
-            <SelectBox lists={listReport} />
+            <SelectBox lists={listReport} value={topSelling} onChange={hanldeChangeTopSelling}  />
           </div>
           <div className="text-secondary-200 text-[13px]" >
             <div className="flex justify-between items-center pb-2 border-b border-lightblue-200 font-medium px-6">
@@ -104,7 +110,8 @@ export default function Home() {
               </div>
             </div>
             {
-              topSellingData.map((data, index) => (
+              //@ts-ignore
+              topSellingData[topSelling.id].map((data, index) => (
                 <div key={index} className="flex justify-between items-center py-4 hover:bg-lightblue-50 px-6">
                     <div>{data.name}</div>
                     <div>{USDcurrency.format(data.spent)}</div>
